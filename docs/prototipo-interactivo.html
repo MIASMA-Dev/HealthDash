@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HealthDash — prototipo interactivo</title>
+<style>
+  :root { color-scheme: dark; font-family: ui-monospace, Menlo, Consolas, monospace; background:#0b1220; color:#e8eef7; }
+  body { margin:0; padding:24px; display:grid; gap:20px; grid-template-columns:minmax(280px,360px) 1fr; }
+  h1 { grid-column:1/-1; font-size:18px; margin:0; }
+  .card { border:1px solid #25324a; border-radius:10px; padding:16px; background:#111b2e; }
+  h2 { font-size:14px; margin:0 0 12px; color:#9fb3d1; }
+  .agent { display:flex; justify-content:space-between; gap:8px; border-bottom:1px solid #1c2940; padding:6px 0; }
+  .agent:last-child { border-bottom:0; }
+  .on { color:#5cd6a0; }
+  .idle { color:#8395ae; }
+  .meta { color:#9fb3d1; font-size:12px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { text-align:left; padding:8px; border-bottom:1px solid #1c2940; }
+  th { color:#9fb3d1; font-weight:600; }
+  button { font:inherit; background:#1d2c47; color:#e8eef7; border:1px solid #35507d; border-radius:6px; padding:6px 10px; cursor:pointer; }
+  @media (max-width:760px) { body { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+  <h1>HealthDash — prototipo interactivo (datos ficticios)</h1>
+  <section class="card">
+    <h2>Sidebar</h2>
+    <div id="side"></div>
+    <p><button id="toggle">Simular actividad</button></p>
+  </section>
+  <section class="card">
+    <h2>Pantalla dedicada</h2>
+    <table><thead><tr><th>Agente</th><th>Progreso</th><th>Skill</th><th>Consumo</th></tr></thead><tbody id="panel"></tbody></table>
+    <p class="meta">TOTAL 12.4k in / 3.1k out · $0.08</p>
+  </section>
+<script>
+  const agents = [
+    { name: "main", status: "working", age: "12s", skill: "code-review", cost: "8.2k / 2.1k" },
+    { name: "explore", status: "idle", age: "2m", skill: "—", cost: "2.4k / 0.6k" },
+    { name: "reviewer", status: "idle", age: "5m", skill: "—", cost: "1.8k / 0.4k" },
+  ];
+  let active = true;
+  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+  function render() {
+    document.getElementById("side").innerHTML = agents.map((a) =>
+      `<div class="agent"><span class="${a.status === "working" && active ? "on" : "idle"}">● ${esc(a.name)}</span>` +
+      `<span class="meta">${esc(a.status)} ${esc(a.age)}</span></div>`).join("");
+    document.getElementById("panel").innerHTML = agents.map((a) =>
+      `<tr><td>${esc(a.name)}</td><td>${esc(a.status)} ${esc(a.age)}</td><td>${esc(a.skill)}</td><td>${esc(a.cost)}</td></tr>`).join("");
+  }
+  document.getElementById("toggle").addEventListener("click", () => { active = !active; render(); });
+  render();
+</script>
+</body>
+</html>

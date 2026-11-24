@@ -1,0 +1,1 @@
+HealthDash es un plugin ligero de OpenCode que muestra en tiempo real los agentes activos, su progreso, las skills que usan y su consumo, en el sidebar y en una pantalla dedicada, pensado para desarrolladores que trabajan con varios agentes a la vez.
