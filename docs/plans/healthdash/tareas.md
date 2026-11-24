@@ -10,9 +10,9 @@
 
 ## Fase 1 — Esqueleto (diferida por petición del usuario)
 
-- [ ] **1.1** Crear `package.json` con `@opencode/plugin/tui`.
-- [ ] **1.2** Crear `src/tui.tsx` con registro mínimo del plugin.
-- [ ] **1.3** Verificar carga en OpenCode sin errores.
+- [x] **1.1** Creado `package.json` con `@opencode/plugin/tui`, peers y `npm run typecheck`.
+- [x] **1.2** Creado `src/tui.tsx` con registro mínimo, sidebar, ruta y comandos; `src/index.ts` vacío y `src/format.ts`.
+- [ ] **1.3** Verificar carga en OpenCode sin errores (typecheck verde; falta prueba manual en TUI con `cli.json`).
 
 ## Fase 2 — Fuente de datos
 
