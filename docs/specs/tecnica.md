@@ -1,14 +1,14 @@
-# Spec técnica — HealthDash (v0.1)
+# Spec técnica — HealthDash (v0.2)
 
 ## Stack
 
 - Plugin de OpenCode V2 con parte TUI: TypeScript/TSX, `@opencode/plugin/tui`, Solid y OpenTUI; sin Angular, Java ni base de datos.
-- Paquete con `exports: { "./tui": "./src/tui.tsx" }` y `peerDependencies` de OpenTUI/Solid según la guía oficial.
-- Sin parte servidor: el plugin solo lee datos expuestos por el cliente de OpenCode.
+- Paquete con `exports: { ".": "./src/index.ts", "./tui": "./src/tui.tsx" }` y `peerDependencies` de OpenTUI/Solid según la guía oficial.
+- Sin parte servidor funcional: `src/index.ts` es un plugin vacío; HealthDash solo lee datos expuestos por el cliente.
 
 ## Fuentes de datos (API V2 verificada)
 
-- Sesiones y estado: `context.data.session.list()`, `context.data.session.status(id)`, `context.data.session.cost(id)`.
+- Sesiones y estado: `context.data.session.list()`, `context.data.session.get(id)`, `context.data.session.status(id)`, `context.data.session.cost(id)`.
 - Agentes y skills del location: `context.data.location.agent.list(location)`, `context.data.location.skill.sync/list(location)`.
 - Eventos en vivo: `context.data.on(...)` / `context.data.listen(...)`.
 - Cliente: `context.client` para consultas puntuales al servidor conectado.
@@ -16,9 +16,10 @@
 ## UI
 
 - Sidebar: slot `sidebar.content` con `context.ui.slot({ append: ..., render: ... })`.
-- Pantalla dedicada: `context.ui.router.register({ name, render })` y navegación con `context.ui.router.navigate({ type: "plugin", ... })`.
-- Atajo: `context.keymap.layer(...)` con comando `palette: true` y `slash` (nombre pendiente, A1).
+- Pantalla dedicada: `context.ui.router.register({ name: "healthdash", render })` y navegación con `context.ui.router.navigate({ type: "plugin", name: "healthdash" })` (T2 resuelto).
+- Comandos: `context.keymap.layer(...)` con `healthdash.open` y `healthdash.close`, `palette: true` y `slash: { name: "healthdash" }`, sin `bind` (A1-atajo resuelto).
 - Estado efímero: `context.storage.memory(...)`; se descarta al salir de la TUI.
+- Formateo de métricas en `src/format.ts`, módulo puro y testeable (T1 resuelto).
 
 ## Restricciones
 
@@ -28,11 +29,15 @@
 
 ## Verificación
 
-- `npm run typecheck` (o `tsc --noEmit`) sobre `src/tui.tsx`.
+- `npm run typecheck` (`tsc --noEmit`) sobre `src/`.
 - Carga local del plugin en `cli.json` y comprobación manual de sidebar + ruta con datos ficticios.
-- Las pruebas unitarias se añadirán cuando exista lógica de formateo de datos (T1).
+- Sin pruebas unitarias en v1: `src/format.ts` son funciones puras de una línea (YAGNI).
 
-## Supuestos pendientes
+## Decisiones cerradas (v0.2, 2026-11-25)
 
-- T1: si el formateo de consumo se extrae a un módulo testeable o se deja inline en el componente.
-- T2: si se registra también un slot `home.footer.status` con un indicador compacto.
+| ID | Decisión |
+|----|----------|
+| A1-métricas | Tokens entrada/salida y coste, con formato defensivo de `unknown`. |
+| A2-granularidad | Sesión actual; por agente solo en la ruta dedicada. |
+| T1-UI | Solid/OpenTUI oficial + `src/format.ts`; no se sustituye por otra librería. |
+| T2-pantalla | `router.register`; sin overlay ni slot `home.footer.status`. |

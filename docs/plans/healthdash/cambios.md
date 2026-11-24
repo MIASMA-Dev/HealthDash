@@ -14,4 +14,4 @@
 
 ## Supuestos pendientes
 
-- A1 (métricas de consumo), A2 (granularidad de progreso), T1 (UI), T2 (pantalla dedicada): sin resolver; bloquean Fase 1.
+- A1/A2/T1/T2 resueltos 2026-11-25 en specs v0.2; Fase 1 desbloqueada.

@@ -2,8 +2,8 @@
 
 | Fase | Estado | Depende de | Salida |
 |------|--------|-----------|--------|
-| 0 Decisiones | PENDIENTE | — | Specs v0.2 |
-| 1 Esqueleto | DIFERIDA (3.8 del plan de arranque) | 0 | Plugin carga |
+| 0 Decisiones | COMPLETADA | — | Specs v0.2 cerradas |
+| 1 Esqueleto | EN CURSO | 0 | Plugin carga |
 | 2 Datos | PENDIENTE | 1 | Sesión/skills en memoria |
 | 3 Sidebar | PENDIENTE | 2 | Widget compacto |
 | 4 Pantalla dedicada | PENDIENTE | 2, 0(T2) | Panel navegable |

@@ -4,7 +4,7 @@ Derivadas de las specs v0.1 y los prototipos. Plugin TUI ligero de OpenCode; API
 
 ## Fase 0 — Decisiones previas (bloqueante)
 
-- Resolver A1, A2, T1 y T2.
+- Resueltas: métricas tokens+coste, granularidad de sesión actual, Solid/OpenTUI + `format.ts`, y `router.register` sin overlay.
 - **Salida:** specs v0.2.
 
 ## Fase 1 — Esqueleto del plugin
@@ -27,7 +27,7 @@ Derivadas de las specs v0.1 y los prototipos. Plugin TUI ligero de OpenCode; API
 
 ## Fase 4 — Pantalla dedicada
 
-- Registro de ruta con `router.register` (o overlay, según T2), según `docs/prototipo-panel.md`.
+- Registro de ruta con `router.register`, según `docs/prototipo-panel.md`.
 - Detalle de agentes, skills y consumo.
 - **Salida:** panel dedicado navegable.
 

@@ -2,11 +2,11 @@
 
 ## Fase 0 — Decisiones previas
 
-- [ ] **0.1** Resolver A1: métricas de consumo mostradas (tokens, coste o ambos).
-- [ ] **0.2** Resolver A2: granularidad del progreso por agente/sesión en v1.
-- [ ] **0.3** Resolver T1: Solid/OpenTUI vs alternativa más ligera.
-- [ ] **0.4** Resolver T2: `router.register` vs overlay para la pantalla dedicada.
-- [ ] **0.5** Actualizar specs a v0.2.
+- [x] **0.1** A1-métricas: tokens entrada/salida y coste, agregado en sidebar y por agente en el panel.
+- [x] **0.2** A2-granularidad: sesión actual, sin histórico entre sesiones.
+- [x] **0.3** T1: Solid/OpenTUI oficial + `src/format.ts` para el formateo.
+- [x] **0.4** T2: `router.register`, sin overlay ni `home.footer.status`.
+- [x] **0.5** Specs actualizadas a v0.2 (funcional y técnica), con atajo resuelto como comandos sin `bind`.
 
 ## Fase 1 — Esqueleto (diferida por petición del usuario)
 

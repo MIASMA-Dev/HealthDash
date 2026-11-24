@@ -1,7 +1,7 @@
 ---
 proyecto: healthdash
 tipo: plan
-actualizado: 2026-11-24
+actualizado: 2026-11-25
 artefactos:
   tareas: COMPLETO
   fases: COMPLETO
@@ -23,20 +23,21 @@ artefactos:
 
 ## Fuentes
 
-- `docs/specs/funcional.md` (v0.1, propósito + A1–A2).
-- `docs/specs/tecnica.md` (v0.1, stack + T1–T2).
+- `docs/specs/funcional.md` (v0.2, propósito + decisiones cerradas).
+- `docs/specs/tecnica.md` (v0.2, stack + decisiones cerradas).
 - `docs/prototipo-sidebar.md`, `docs/prototipo-panel.md`, `docs/prototipo-interactivo.html`.
 - API V2 de plugins de OpenCode verificada 2026-11-24.
 
-## Preguntas pendientes
+## Decisiones cerradas
 
-- **A1**: ¿qué métricas de consumo se muestran en la sidebar (tokens, coste, ambos)?
-- **A2**: ¿qué granularidad de progreso por agente/sesión se considera suficiente para la v1?
-- **T1**: ¿Solid/OpenTUI como UI del plugin o alternativa más ligera?
-- **T2**: ¿la pantalla dedicada se registra con `router.register` o se abre como overlay?
+- **A1-métricas**: tokens entrada/salida y coste; agregado en sidebar, por agente en el panel.
+- **A1-atajo**: comandos `healthdash.open`/`healthdash.close`, sin `bind` global.
+- **A2**: sesión actual, sin histórico entre sesiones.
+- **T1**: Solid/OpenTUI oficial + `src/format.ts`.
+- **T2**: `router.register` sin overlay ni `home.footer.status`.
 
 ## Notas para reanudar
 
 - Es un plugin TUI, no una app web: sin servidor, sin Java, sin BD.
-- Código de aplicación diferido por petición del usuario («prototipos y spec antes de nada»); Fase 1 no ejecutada.
+- Fase 0 cerrada 2026-11-25; Fase 1 en curso tras el visto bueno del usuario.
 - Verificar ligereza: sin dependencias que no estén ya en el entorno del plugin.
